@@ -45,9 +45,11 @@ class RandomTester
     (0..9).each {|rnum| puts @results[rnum]}
   end
   def remote_random()
+    #This uses one of the remote random number generators as described in the top comment
+    #Note that you must be connected to the internet for this to work
     @results = Hash.new(0)
     generator1 = RealRand::RandomOrg.new
-    rnum_array= generator1.randnum(10000,0,9)
+    rnum_array= generator1.randnum(10000,0,9)  #args are 'how many(max 10k), min value, max value'
     rnum_array.each {|rnum|@results[rnum]+=1 }
     (0..9).each {|rnum| puts @results[rnum]}
   end
@@ -63,19 +65,16 @@ RandomTester.new.remote_random
 
 
 
-#generator1 = Random::RandomOrg.new
 #generator1 = RealRand::RandomOrg.new
 #puts "From RandomOrg using first randbyte, then randnum"
 #puts generator1.randbyte(5).join(",")
 #puts generator1.randnum(100, 1, 6).join(",")  # Roll the dice 100 times.
 
-#generator2 = Random::FourmiLab.new
 #generator2 = RealRand::FourmiLab.new
 #puts "From FourmiLab, using randbye, randnum not supported"
 #puts generator2.randbyte(5).join(",")
 # randnum is not supported.
 
-#generator3 = Random::EntropyPool.new
 #generator3 = RealRand::EntropyPool.new
 #puts "from EntropyPool using randbyte, randnum not supported"
 #puts generator3.randbyte(5).join(",")
