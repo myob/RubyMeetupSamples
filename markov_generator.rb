@@ -37,7 +37,7 @@ end
 
 def prep_text()
   #I always 'prep' the text by making sure that all white space is reduced/converted to a single space character
-  @in_text = File.read('Crimson.txt')  #read gets the entire file contents as a string
+  @in_text = File.read('tale_of_two_cities_excerpt.txt')
   @in_text=@in_text.gsub!(%r{\s+}, ' ')  #destructively modify the incoming text
   @end_point=@in_text.size #remember the original size of the input
   @in_text=@in_text<<@in_text[0,(@pattern_length + 1)]
@@ -60,7 +60,7 @@ def build_output()
   @out_text<<@in_text[start_point,@pattern_length + 1]  #use the random start point to grab the initial text
   char_list=@dict[@out_text.intern]  #find the collection of following characters
   selected_char=char_list[rand(char_list.size)]  #pick one
-  (1...2500).each do |pos|  #get 2500 characters of output, change end point to suit
+  (1...5000).each do |pos|  #get 5000 characters of output, change end point to suit
     new_pattern=@out_text[pos,@pattern_length]
     char_list=@dict[new_pattern.intern]
     selected_char=char_list[rand(char_list.size)]  #-1)]
